@@ -8,18 +8,6 @@ Xây dựng một loader Windows tối giản sử dụng:
 * NT API
 * Process Injection trong môi trường lab
 
-Không sử dụng:
-
-* DLL sideloading
-* Module Stomping
-* DLL Hollowing
-* Process Hollowing
-* AMSI/ETW bypass
-* Anti-analysis / Anti-emulation
-* Stack spoofing
-* C2 staging
-* Polymorphic mutation
-
 ---
 
 ## 2. Kiến trúc
@@ -364,18 +352,6 @@ MSVC
    ↓
 loader.exe
 ```
-
-Không cần:
-
-```text
-Encrypt.py
-Mutate.py
-SideloadGen.py
-AsmStub.asm
-Payload.h generation
-```
-
-nếu mục tiêu chỉ là học Dynamic API Resolution + NT API.
 
 ---
 
