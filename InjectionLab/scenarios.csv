@@ -1,0 +1,10 @@
+scenario_id,method,target_mode,expected_marker,expected_queue,ground_truth_class,controlled_change
+B01,none,idle,no,not_applicable,benign,target runs without injector
+B02,selfdll,selfdll,yes,not_applicable,benign,target loads and calls its own marker DLL
+B03,selfapc,selfapc,yes,true,benign,target queues APC on itself and waits alertably
+P01,crt,idle,yes,not_applicable,injection_attempt,CreateRemoteThread starts fixed stub in private RX memory
+P02,dll,idle,yes,not_applicable,injection_attempt,remote LoadLibrary and explicit DLL marker export in image memory
+P03,apc,alertable,yes,true,injection_attempt,APC fixed stub on pre-existing alertable thread
+P04,apc,nonalertable,no_observed_in_window,true,injection_attempt,same APC while target thread never enters alertable wait
+P05,nt,idle,yes,not_applicable,injection_attempt,NtCreateThreadEx with same private RX stub as P01
+P06,nt-image,idle,yes,not_applicable,injection_attempt,NtCreateThreadEx directly starts target-owned marker in image RX memory

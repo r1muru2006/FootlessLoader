@@ -1,0 +1,22 @@
+<Sysmon schemaversion="4.22">
+  <HashAlgorithms>sha256</HashAlgorithms>
+  <EventFiltering>
+    <ProcessCreate onmatch="include">
+      <Image condition="end with">\NT230_target.exe</Image>
+      <Image condition="end with">\NT230_injector.exe</Image>
+    </ProcessCreate>
+    <ProcessTerminate onmatch="include">
+      <Image condition="end with">\NT230_target.exe</Image>
+      <Image condition="end with">\NT230_injector.exe</Image>
+    </ProcessTerminate>
+    <ImageLoad onmatch="include">
+      <Image condition="end with">\NT230_target.exe</Image>
+    </ImageLoad>
+    <CreateRemoteThread onmatch="include">
+      <TargetImage condition="end with">\NT230_target.exe</TargetImage>
+    </CreateRemoteThread>
+    <ProcessAccess onmatch="include">
+      <TargetImage condition="end with">\NT230_target.exe</TargetImage>
+    </ProcessAccess>
+  </EventFiltering>
+</Sysmon>

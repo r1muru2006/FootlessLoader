@@ -1,0 +1,33 @@
+{
+  "verification_status": "x64 build and host checks passed; VM scenarios NOT executed; detector NOT evaluated",
+  "files": {
+    "assignment-extract.json": "3e76b5895c7faa515ce1a94b50c1195ce25833bc04d28ea8cd24be9cbe915151",
+    "bin/build.log": "79d4f3b6397d56a070e23881e115d6493b34b2a7bf160d66ccec383fe6e8d748",
+    "bin/NT230_injector.exe": "e7b50e26bad5ded378217f76f63622e4a8bd84d0a2a6e7522a3d11f41b0bd3b8",
+    "bin/NT230_marker.dll": "e62b699ea0f090fa162eae611583fb85a1b65d8fcc6de000d6a528c616835338",
+    "bin/NT230_target.exe": "7ee53539899cb64e4c1e868fe1bc9c41c3e1c38732a05c4871f267da2033fcd0",
+    "bin/sha256.csv": "0e2849d24df3879a8931818d3b3a03db7a7f825dd1f0081aedfda5da26b10234",
+    "build.ps1": "044ffdc1f4dfd2633c9a725075f033c6f03870ee35fe1b51fc5c6d545fd90184",
+    "docs/EVIDENCE.md": "3daaa3747811371a074f5a411aa5811f14582818a1695f26abb4d16cf3efd263",
+    "docs/REPORT.md": "42a3d9538f3cb27dbdb3c942e84f04c4f1bc42d53d6b5dcc4c839d4ca4cb0243",
+    "README.md": "7ee8fd0f75eeeb0d7de6ae492574dce0fde8ebb5874b957f52bd0b56cd0ad045",
+    "scenarios.csv": "5d1d7ec38c39f77d242630e6c1d9dc0560977fda8a3d30ac2e7bb887faa0b8a4",
+    "scripts/collect-sysmon.ps1": "be9870882d0fcdbd5c02953703f1f011420b26ccdb0e3512966c3faac82e5dda",
+    "scripts/evaluate.py": "de9b11a6011461d4d14452b7a29a468ca89b1254b1ba6033bfc776529a2907a6",
+    "scripts/extract-assignment.py": "b4cade2a02c04a2632e9c492eef1ab85d5851b82ebf608993145e799172ca4ad",
+    "scripts/run-lab.ps1": "6511d054a9d15b171071a26d88bf0fbee6dd225f757b6240534aafabe123c158",
+    "scripts/verify-local.ps1": "a32765982414b6b14e192b24730085f4fc30c98d679f4c68a5667317842661f1",
+    "src/injector.c": "cee9ed3a81125c4b6f6dd706aff7efdef8a17b7f2759d782914a38c73feba707",
+    "src/lab.h": "0d5995ab26d4706045d6a7b85bee91a4257a3d9043e9851f101302de5fe78c6c",
+    "src/marker.c": "51b670f8509458672763acda02f05a3bd9650d0444a1bea5944b1bd85124d438",
+    "src/target.c": "c11e155ce255a214ca210fdfe2b24329ea36cf63a384b0059b68ed505c857a74",
+    "telemetry/sysmon-lab.xml": "4cc5785a0ffe57b4080dc88bea379b5d97b0e4db2757c2c2c4ba098fe64b032f",
+    "templates/detector-predictions.csv": "b097f8b4a2be8d451ab541e82279ce0570f1ba51d081f6df515ef6691ce93b38",
+    "templates/results.csv": "e4d4c191a4cb3ef87a0703c8f996c96941033dc80ba1437c58bf0b579e181342",
+    "tests/log_contract.c": "8633c279b8cd3eb5ad7449fc1886a2f71d54bbc3dff38af93f08746fb9479992",
+    "tests/test_evaluate.py": "1aff3baedc13d7eb423f4a1a445f8ead268fcf1fe63d781ab04a2ae601287d35",
+    "verification/contract.jsonl": "705991359e3d357e5fd82ae7cd40f9d4b56fa57f18f91bd47b08f42436e479aa",
+    "verification/gate.stderr.txt": "86e5b3368c195c49ee6ed8ede0d567847b3ad6c513ffed1ae5dfd568cdbd7045",
+    "verification/host-checks.txt": "cb92505675fc75b1b4c404fefe536aba340cbd90e60f28b41277205be5bc37c1"
+  }
+}

@@ -1,0 +1,28 @@
+# Generated binaries and build output
+/bin/
+*.exe
+*.dll
+*.obj
+*.o
+*.pdb
+*.ilk
+
+# Generated verification and experiment output
+/verification/
+/evidence/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Editor and OS metadata
+.vs/
+.DS_Store
+Thumbs.db

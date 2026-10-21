@@ -1,0 +1,1 @@
+run_id,scenario_id,iteration,method,ground_truth_class,source_pid,source_image,target_pid,target_image,expected,actual,marker_executed,apc_queued,dll_loaded,new_thread_ids,start_addresses,status,injector_exit,target_exit,error,window_start_utc,window_end_utc,evidence,detector_result,telemetry_status

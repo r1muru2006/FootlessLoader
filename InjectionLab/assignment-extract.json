@@ -1,0 +1,107 @@
+{
+  "source_file": "NT230-FinaL-topics-final-v22.sept2026 (1).xlsm",
+  "sha256": "2da60536223312b628739a75f11f6ea357c7594f2f4359757923b2e3c52b13b9",
+  "rows": [
+    {
+      "sheet": "DEV Track",
+      "row": 12,
+      "cells": {
+        "A12": "D08",
+        "B12": "Trung bình–Khá",
+        "C12": "Dynamic API Resolution: API hashing",
+        "D12": "Resolve API benign bằng LoadLibrary/GetProcAddress; marker.",
+        "E12": "Đổi hash algorithm/seed/order; ẩn chuỗi nhưng không dùng shellcode độc hại.",
+        "F12": "Hash loops, dynamic resolution, PE import anomaly và API behavior.",
+        "G12": "Tạo 3 resolver; phân tích bằng Ghidra; detector static + dynamic/memory. ",
+        "H12": "≥3 benign + ≥3 PoC/biến thể; Precision, Recall, F1, FPR; có log/telemetry và hướng dẫn tái lập.",
+        "I12": "Chỉ VM có snapshot/rollback; không payload phá hoại, C2 Internet, credential theft, exfiltration, persistence ngoài phạm vi hoặc phát tán mẫu.",
+        "J12": "T1027.007",
+        "K12": "Dataset API resolver: hash algorithm/seed/order và dynamic calls; ứng dụng static-dynamic detector."
+      }
+    },
+    {
+      "sheet": "DEV Track",
+      "row": 13,
+      "cells": {
+        "A13": "D09",
+        "B13": "Trung bình–Khá",
+        "C13": "Process Injection với NT API",
+        "D13": "Chọn NtCreateThreadEx hoặc section mapping; target process thử nghiệm.",
+        "E13": "Đổi target, memory protection, thread start address; so sánh CreateRemoteThread.",
+        "F13": "Source–target relation, remote thread, RWX/RX region, access rights.",
+        "G13": "Tạo injector/target tự viết; capture ETW/Sysmon; detector theo event correlation. ",
+        "H13": "≥3 benign + ≥3 PoC/biến thể; Precision, Recall, F1, FPR; có log/telemetry và hướng dẫn tái lập.",
+        "I13": "Chỉ VM có snapshot/rollback; không payload phá hoại, C2 Internet, credential theft, exfiltration, persistence ngoài phạm vi hoặc phát tán mẫu.",
+        "J13": "T1055",
+        "K13": "Dataset source-target injection telemetry; ứng dụng correlation detector."
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 3,
+      "cells": {
+        "A3": "Hạng mục",
+        "B3": "Điểm",
+        "C3": "Mô tả đạt yêu cầu",
+        "D3": "Mức khá/giỏi",
+        "E3": "Minh chứng bắt buộc",
+        "F3": "Lưu ý chấm"
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 4,
+      "cells": {
+        "A4": "A. Hiểu cơ chế và thiết kế PoC",
+        "B4": "3.0",
+        "C4": "Giải thích đúng nguyên lý, luồng thực thi, điều kiện cần và giới hạn; PoC chạy được trong lab.",
+        "D4": "Có biến thể có kiểm soát, phân tích sâu cơ chế Windows/PE/script/package.",
+        "E4": "Source code, sơ đồ, video/demo, log.",
+        "F4": "Không chấm cao nếu chỉ chạy công cụ có sẵn mà không giải thích."
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 5,
+      "cells": {
+        "A5": "B. Thực nghiệm biến thể/evasion có kiểm soát",
+        "B5": "2.0",
+        "C5": "Có ít nhất 3 biến thể và đối chứng benign; mô tả thay đổi và ảnh hưởng đến detector.",
+        "D5": "Đo được trade-off giữa thay đổi, khả năng quan sát và tỷ lệ phát hiện.",
+        "E5": "Bảng scenario, mẫu test, kết quả trước/sau.",
+        "F5": "Không yêu cầu bypass hệ thống bảo mật thật, chỉ cần hệ thống giả lập"
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 6,
+      "cells": {
+        "A6": "C. Detector và kỹ thuật phát hiện",
+        "B6": "4.0",
+        "C6": "Detector độc lập với PoC, phát hiện được kỹ thuật bằng static/dynamic/memory/graph features phù hợp.",
+        "D6": "Có thiết kế nhiều lớp, giải thích được feature và xử lý false positive.",
+        "E6": "Mã detector, rule/model, telemetry, báo cáo lỗi.",
+        "F6": "Đây là hạng mục trọng tâm của Dev Track."
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 7,
+      "cells": {
+        "A7": "D. Đánh giá, tái lập và an toàn",
+        "B7": "1.0",
+        "C7": "Có Precision/Recall/F1/FPR hoặc latency phù hợp; hướng dẫn tái lập; tuân thủ lab cô lập.",
+        "D7": "Phân tích giới hạn, threat model, khả năng tổng quát và rủi ro triển khai.",
+        "E7": "README, cấu hình VM, checklist an toàn, kết quả tái chạy.",
+        "F7": "Vi phạm an toàn nghiêm trọng: không đạt phần D và xem xét không công nhận PoC."
+      }
+    },
+    {
+      "sheet": "DEV Track - Rubric",
+      "row": 10,
+      "cells": {
+        "A10": "Quy định chung: payload/marker phải vô hại; không C2 Internet, credential theft, exfiltration, persistence ngoài phạm vi, phát tán mẫu hoặc vô hiệu hóa bảo vệ trên máy thật. Mọi demo thực hiện trong VM có snapshot/rollback."
+      }
+    }
+  ]
+}
