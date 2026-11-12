@@ -1,3 +1,5 @@
+> **Trạng thái:** đây là đặc tả ban đầu. Bản triển khai hoàn chỉnh nằm trong `README.md`, `docs/DESIGN.md`, `src/` và `dist/`.
+
 # Guide
 
 ## 1. Mục tiêu

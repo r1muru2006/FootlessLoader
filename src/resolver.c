@@ -1,6 +1,8 @@
 #include "resolver.h"
 
+#include <intrin.h>
 #include <string.h>
+#include <winternl.h>
 
 static void clear_info(FOOTLESS_RESOLVE_INFO *info, uint32_t target_hash) {
     if (info == NULL) {
@@ -90,22 +92,32 @@ static BOOL image_export_layout(HMODULE module,
     return TRUE;
 }
 
-BOOL footless_get_or_load_module(const wchar_t *module_name, HMODULE *module_out) {
-    HMODULE module;
+HMODULE footless_module_by_hash(uint32_t name_hash, uint32_t seed) {
+    PPEB peb;
+    PPEB_LDR_DATA ldr;
+    PLIST_ENTRY head;
+    PLIST_ENTRY current;
+    unsigned int guard = 0U;
 
-    if (module_name == NULL || module_out == NULL) {
-        return FALSE;
+    peb = (PPEB)__readgsqword(0x60);
+    if (peb == NULL || peb->Ldr == NULL) {
+        return NULL;
     }
-    module = GetModuleHandleW(module_name);
-    if (module == NULL) {
-        module = LoadLibraryW(module_name);
+    ldr = peb->Ldr;
+    head = &ldr->InMemoryOrderModuleList;
+    current = head->Flink;
+    /* Bound the walk so a corrupted list cannot spin forever. */
+    while (current != NULL && current != head && guard < 4096U) {
+        PFOOTLESS_LDR_ENTRY entry =
+            CONTAINING_RECORD(current, FOOTLESS_LDR_ENTRY, InMemoryOrderLinks);
+        if (entry->BaseDllName.Buffer != NULL &&
+            footless_hash_wide_ci(entry->BaseDllName.Buffer, seed) == name_hash) {
+            return (HMODULE)entry->DllBase;
+        }
+        current = current->Flink;
+        ++guard;
     }
-    if (module == NULL) {
-        *module_out = NULL;
-        return FALSE;
-    }
-    *module_out = module;
-    return TRUE;
+    return NULL;
 }
 
 BOOL footless_resolve_export_by_hash(HMODULE module,
@@ -234,6 +246,38 @@ BOOL footless_resolve_export_by_hash(HMODULE module,
         info_out->status = FOOTLESS_RESOLVE_NOT_FOUND;
     }
     return FALSE;
+}
+
+BOOL footless_resolve_api_by_hash(const char *module_name_ascii,
+                                  const char *api_name_ascii,
+                                  FOOTLESS_HASH_VARIANT variant,
+                                  uint32_t seed,
+                                  void **address_out,
+                                  FOOTLESS_RESOLVE_INFO *info_out) {
+    uint32_t module_hash;
+    uint32_t api_hash;
+    HMODULE module;
+
+    if (module_name_ascii == NULL || api_name_ascii == NULL ||
+        address_out == NULL) {
+        return FALSE;
+    }
+    *address_out = NULL;
+    /* Module lookup uses the common baseline hash over the lower-case
+       module name, independent of the export-key variant. */
+    module_hash = footless_hash_baseline(module_name_ascii,
+                                         strlen(module_name_ascii), seed);
+    module = footless_module_by_hash(module_hash, seed);
+    if (module == NULL) {
+        if (info_out != NULL) {
+            clear_info(info_out, 0U);
+        }
+        return FALSE;
+    }
+    api_hash = footless_hash_for_variant(variant, module_name_ascii,
+                                         api_name_ascii, seed);
+    return footless_resolve_export_by_hash(module, module_name_ascii, api_hash,
+                                           variant, seed, address_out, info_out);
 }
 
 const char *footless_resolve_status_name(FOOTLESS_RESOLVE_STATUS status) {

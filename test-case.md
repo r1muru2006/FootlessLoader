@@ -1,5 +1,19 @@
 # Test Cases
 
+> **Cách chạy thực tế:** các test dưới đây được ánh xạ vào CLI của
+> `footless_loader.exe`. Chạy `selftest` cho TC-API-01..04, chạy
+> `scripts/run_lab.ps1` cho TC-INJ-01..04/TC-INT-01, và kiểm tra marker bằng
+> `scripts/verify_marker.py`. Không chạy injection ngoài VM có snapshot.
+>
+> ```powershell
+> .\footless_loader.exe selftest --variant all
+> .\footless_loader.exe resolve ntdll.dll NtOpenProcess
+> .\scripts\run_lab.ps1 -SnapshotName $env:FOOTLESS_VM_SNAPSHOT -VmSnapshotConfirmed -Method stub -Scenario P03
+> python .\scripts\verify_marker.py --run-dir .\evidence\<suite>\<run>
+> ```
+>
+> `selftest` kiểm tra cả 3 biến thể hash, negative lookup và API table 27 entry.
+
 Mục tiêu của test-case là kiểm tra độc lập hai thành phần:
 
 1. Dynamic API Resolution (API Hashing)

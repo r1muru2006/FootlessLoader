@@ -1,2 +1,64 @@
-__pycache__/
+# ============================================================
+# Footless-loader — build artifacts and local lab output
+# ============================================================
+
+# Build output (binaries are reproducible from build.sh / build.ps1)
+dist/
 resolve-build/
+bin/
+obj/
+build/
+out/
+*.o
+*.obj
+*.a
+*.lib
+*.exp
+*.ilk
+*.pdb
+*.map
+*.d
+*.exe
+*.dll
+*.sys
+*.scr
+
+# Lab evidence and telemetry captured in the VM
+evidence/
+*.jsonl
+loader.jsonl
+marker.jsonl
+sysmon.evtx
+telemetry-status.json
+
+# Compiler / IDE / CMake scratch
+compile_commands.json
+.cache/
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+*.ninja
+.vs/
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python helper scripts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

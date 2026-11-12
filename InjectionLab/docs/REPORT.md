@@ -1,3 +1,5 @@
+> **Lưu ý:** đây là báo cáo của lab tham chiếu NT230. Bản nộp chính (D08+D09, loader API-hashing + detector) nằm ở `../../../REPORT.md` và `../../../Footless-detector/`.
+
 # Báo cáo phần Process Injection — D09
 
 ## 1. Mục tiêu và trạng thái

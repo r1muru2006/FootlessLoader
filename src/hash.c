@@ -63,6 +63,26 @@ uint32_t footless_hash_module_api(const char *module_name, size_t module_length,
     return state;
 }
 
+uint32_t footless_hash_wide_ci(const wchar_t *text, uint32_t seed) {
+    uint32_t state = UINT32_C(0x811c9dc5) ^ seed;
+    size_t index;
+
+    if (text == NULL) {
+        return 0U;
+    }
+    for (index = 0U; text[index] != L'\0'; ++index) {
+        wchar_t ch = text[index];
+        unsigned char byte;
+        if (ch >= L'A' && ch <= L'Z') {
+            ch = (wchar_t)(ch - L'A' + L'a');
+        }
+        byte = (unsigned char)((unsigned int)ch & 0xffU);
+        state ^= (uint32_t)byte;
+        state *= UINT32_C(0x01000193);
+    }
+    return state;
+}
+
 uint32_t footless_hash_for_variant(FOOTLESS_HASH_VARIANT variant,
                                   const char *module_name,
                                   const char *api_name,
@@ -100,4 +120,37 @@ const char *footless_hash_variant_name(FOOTLESS_HASH_VARIANT variant) {
         default:
             return "unknown";
     }
+}
+
+int footless_hash_variant_from_name(const char *name,
+                                    FOOTLESS_HASH_VARIANT *variant_out) {
+    int index;
+
+    if (name == NULL || variant_out == NULL) {
+        return 0;
+    }
+    if (strcmp(name, "baseline") == 0 || strcmp(name, "baseline-api") == 0) {
+        *variant_out = FOOTLESS_HASH_BASELINE;
+        return 1;
+    }
+    if (strcmp(name, "seeded") == 0 || strcmp(name, "seeded-rotate-xor") == 0) {
+        *variant_out = FOOTLESS_HASH_SEEDED;
+        return 1;
+    }
+    if (strcmp(name, "module-api") == 0 ||
+        strcmp(name, "module_api") == 0 ||
+        strcmp(name, "module-api-rotate-xor") == 0) {
+        *variant_out = FOOTLESS_HASH_MODULE_API;
+        return 1;
+    }
+    for (index = 0; index < 3; ++index) {
+        char digit[2];
+        digit[0] = (char)('0' + index);
+        digit[1] = '\0';
+        if (strcmp(name, digit) == 0) {
+            *variant_out = (FOOTLESS_HASH_VARIANT)index;
+            return 1;
+        }
+    }
+    return 0;
 }

@@ -1,3 +1,5 @@
+> **Ghi chú:** đây là lab tham chiếu ban đầu (NT230). Bản nộp chính nằm ở `../README.md` với loader API-hashing + 5 method và detector độc lập ở `../../Footless-detector`.
+
 # NT230 — Bộ lab Process Injection
 
 Bộ mã cho phần injection của nhóm D08+D09: target tự viết, marker vô hại, CreateRemoteThread, DLL Injection, APC và phép so sánh NtCreateThreadEx. Không có detector trong bộ mã này. Detector của nhóm cần xử lý telemetry độc lập.

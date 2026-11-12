@@ -1,3 +1,5 @@
+> **Lưu ý:** đây là hướng dẫn của lab tham chiếu NT230. Quy trình nộp chính nằm ở `../../docs/RUNBOOK.md` và `../../docs/EVIDENCE.md`.
+
 # Thu bằng chứng và bàn giao detector
 
 ## Trước khi chạy
